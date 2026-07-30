@@ -79,6 +79,13 @@ this is consistent with the strategy beginning and ending invested.
 | Maximum drawdown | -21.99% | -33.72% |
 | Exposure | 77.99% | 100.00% |
 
+### EQUITY CURVE
+![Equity curve](figures/equity_curve.png)
+### DRAWDOWN
+![Drawdown comparison](figures/drawdown_graph.png)
+### MOVING-AVERAGE SIGNALS
+![Moving average comparison](moving_averages_graph.png)
+
 
 
 
