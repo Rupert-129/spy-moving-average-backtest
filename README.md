@@ -79,6 +79,22 @@ this is consistent with the strategy beginning and ending invested.
 | Maximum drawdown | -21.99% | -33.72% |
 | Exposure | 77.99% | 100.00% |
 
+### Trade Summary
+
+| Statistic | Value |
+|---|---:|
+| Market exposure | 77.99% |
+| Completed trades | 7 |
+| Winning trades | 4 of 7 |
+| Winning-trade rate | 57.14% |
+| Average net trade return | 9.69% |
+| Best net trade return | 50.19% |
+| Worst net trade return | -15.63% |
+| Open position at end | Yes |
+
+The strategy began and ended the testing period invested. It generated eight entries and seven exits, leaving one position open at the end. The open position was excluded 
+from the completed-trade statistics.
+
 ### EQUITY CURVE
 ![Equity curve](figures/equity_curve.png)
 ### DRAWDOWN
