@@ -60,6 +60,25 @@ Several consistency checks were used to validate the backtest. Positions were re
 counts were checked against the initial and final positions. The final output contained eight entries, seven exits, seven completed trades and one open trade.
 this is consistent with the strategy beginning and ending invested.
 
+## PERFORMANCE METRICS
+- **Total return:** The percentage change in portfolio value over the testing period.
+- **Compound annual growth rate (CAGR):** The constant annual growth that would produce the total growth after accounting for compounding.
+- **Annualised volatility:** The annualised standard deviation of daily returns. It measures how widely the returns fluctuate and is used as a measure of risk.
+- **Sharpe ratio:** The average excess return earned per unit of volatility. This backtest assumes the risk free rate of return is zero.
+- **Maximum drawdown:** The largest peak-to-trough decline in cumulative portfolio value during the testing period.
+- **Exposure:** The percentage of days the portfolio holds a position in the market.
+- **Winning trade rate:** Percentage of completed trades that produced a positive net return after transaction cost.
+
+## RESULTS
+| Metric | Strategy | Buy and Hold |
+|---|---:|---:|
+| Total return | 77.27% | 152.69% |
+| CAGR | 9.14% | 15.21% |
+| Annualised volatility | 13.58% | 20.25% |
+| Sharpe ratio | 0.71 | 0.80 |
+| Maximum drawdown | -21.99% | -33.72% |
+| Exposure | 77.99% | 100.00% |
+
 
 
 
