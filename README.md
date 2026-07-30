@@ -115,6 +115,8 @@ already fallen and entry signals occur after prices have already begun to rise T
 the flat areas of the blue line (the strategy holding cash) beginning midway through a large drawdown and then carrying on until after the market is restoring itself 
 towards its last high. Another metric that shows this is exposure. The strategy was invested on 78% of days which caused it to miss some bullish market days. Furthermore, 
 transaction costs slightly reduced returns at each entry and exit.
+### EVALUATION
+
 
 
 
