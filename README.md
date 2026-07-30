@@ -116,6 +116,11 @@ the flat areas of the blue line (the strategy holding cash) beginning midway thr
 towards its last high. Another metric that shows this is exposure. The strategy was invested on 78% of days which caused it to miss some bullish market days. Furthermore, 
 transaction costs slightly reduced returns at each entry and exit.
 ### EVALUATION
+In conclusion, the simple moving average crossover strategy did provide meaningful reductions in volatility and drawdown. However, this came at too great a cost in 
+terms of the returns it yielded. This is shown by comparing the Sharpe ratios. The strategy Sharpe is 0.09 lower than the market Sharpe. This means that even though
+the strategy did well to reduce risk and preserve cash, the market has better risk-adjusted performance because its returns were high enough to compensate for its higher 
+volatility. The hypothesis that the 20/100-day simple moving average crossover would outperform buying and holding the SPY is not supported in this testing period. This 
+strategy behaves more as a defensive risk-management rule than a market-beating strategy. 
 
 
 
