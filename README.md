@@ -84,7 +84,7 @@ this is consistent with the strategy beginning and ending invested.
 ### DRAWDOWN
 ![Drawdown comparison](figures/drawdown_graph.png)
 ### MOVING-AVERAGE SIGNALS
-![Moving average comparison](moving_averages_graph.png)
+![Moving average comparison](figures/moving_averages_graph.png)
 
 
 
