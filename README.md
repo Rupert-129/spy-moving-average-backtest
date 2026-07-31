@@ -3,7 +3,7 @@ A Python backtest of a 20/100-day moving-average crossover strategy on SPY, incl
 
 ## OVERVIEW
 I have built a backtester to see if I could in some way beat simply just buying holding an asset for years. The Ticker I used as my test subject 
-is the SPY (a tracker of the S&P500), and to produce my signals I compared 20 and 100 day moving averages. The metrics I primarily compared were,
+is SPY (a tracker of the S&P500), and to produce my signals I compared 20 and 100 day moving averages. The metrics I primarily compared were,
 total return, Sharpe ratio, CAGR, volatility and drawdown. 
 
 ## STRATEGY
