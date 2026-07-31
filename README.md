@@ -122,6 +122,101 @@ the strategy did well to reduce risk and preserve cash, the market has better ri
 volatility. The hypothesis that the 20/100-day simple moving average crossover would outperform buying and holding the SPY is not supported in this testing period. This 
 strategy behaves more as a defensive risk-management rule than a market-beating strategy. 
 
+## LIMITATIONS
+### LIMITED SCOPE AND SAMPLE SIZE
+This backtest took place over a relatively short period, six and a half years, and only monitored SPY. This means that 
+we cannot say for certain that these sorts of results will be consistent for longer periods or different tickers. Over 
+the testing period there was only seven completed trades recorded and only 57.14% of them were winning (4/7).The best 
+completed trade returned 50.19%, meaning one large trade could have a large influence on the average net trade return of 
+9,69%. The sample is too small to make strong statistical conclusions.
+### PARAMETER SELECTION
+For this project, the only combination we tested was 20-day versus 100-day simple moving averages. These values I picked
+with my own intuition to try and balance smoothness and responsiveness. These values were not validated using a separate
+out-of-sample dataset and the data in the dataset influenced the decision to use these values so there is a risk of 
+selection bias. This single test does not prove that other combinations would perform similarly.
+### TRADING ASSUMPTIONS
+Orders are assumed to execute at the required closing price. The transaction cost was fixed at 5 basis points was taken 
+from each entry and exit which may not reflect costs in every market condition. I also excluded slippage, bid-ask spreads 
+and market impact from the test to simplify calculations. This change may allow the strategy to perform better than it 
+would if it was applied to a real market. The benchmark does not pay an initial transaction cost which gives a very small 
+advantage. The final open position is not charged an exit cost. Taxes are also excluded. The model assumes that a position 
+generated from end-of-day information can be established at the closing price before the next return interval begins.
+### PERFORMANCE ASSUMPTIONS
+When the strategy is not invested, the cash being held is assumed to not accrue interest. Because the strategy held cash 
+for about 22% of the time, this may have caused a small loss in returns if compared to modelling interest-bearing cash. 
+The Sharpe ratio also assumes a risk free rate of zero and used 252 trading days to annualise returns and volatility. If 
+we used a different risk free rate or number of days we would have seen a slightly different result. 
+
+The benchmark is invested 100% of the time versus 77.99% of the time for our strategy. This is appropriate for testing
+whether passive investing will be outperformed by the strategy, but it is not exposure or volatility matched. Therefore,
+some of the strategy's lower return is a consequence of spending more time uninvested rather than necessarily indicating
+poor performance while invested.
+
+## FUTURE IMPROVEMENTS
+### MORE REALISTIC TRADING MODEL
+In future versions I could include bid-ask spreads, slippage, variable transaction costs and interest for uninvested cash.
+Trades could also be modelled to execute at the next trading sessions opening price, while the final open position could be
+closed and charged an exit cost. We could also charge the benchmark a transaction cost at the beginning to simulate an 
+entry and we could supplement it with exposure or volatility matched comparisons. These changes would help distinguish 
+the affects of the market timing decisions from those of taking less market risk.
+### BROADER TESTING
+We could use a longer period and use other assets. Such assets could include equity ETFs, indices or asset classes. This 
+would give us more competed trades and expose the strategy to a wider range of market conditions, and would allow us to
+make more statistically reliable conclusions on the strategy and see whether the result we got is specific to SPY.
+### PARAMETER SENSITIVITY
+A wider range of moving-average combinations could be tested, such as short averages between 10 and 50 days and longer 
+averages between 75 and 200 days. The reason for this is to determine whether performance remains reasonably stable around 
+the 20/100-day combination. If small parameter changes drastically change the results it would suggest that the strategy 
+is fragile. Parameters should not be changed until we obtain a better result, this would result in overfitting. 
+### OUT OF SAMPLE TESTING
+A future version of the project could divide the data into a development period and a separate out-of-sample testing 
+period. The moving average parameters would be selected using only development data before being used on unseen data.
+Walk forward testing could also be used to examine whether the strategy continues to work as the conditions of the market 
+change. This would lower the risk of selection bias.
+
+## HOW TO RUN
+
+### REQUIREMENTS
+
+- Python 3
+- An internet connection to download SPY data from Yahoo Finance
+
+### INSTALLATION
+
+Clone the repository and move into its directory:
+
+```bash
+git clone https://github.com/Rupert-129/spy-moving-average-backtest.git
+cd spy-moving-average-backtest
+```
+
+Install the required Python packages:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+### RUNNING THE BACKTEST
+
+Run the main Python file:
+
+```bash
+python spy_backtest.py
+```
+
+The program will download the required SPY data, print the performance statistics to the console and display the backtest figures.
+
+On Windows, replace `python` with `py` if necessary:
+
+```bash
+py -m pip install -r requirements.txt
+py spy_backtest.py
+```
+## DISCLAIMER
+
+This project is for educational purposes only and does not constitute financial advice.
+
+
 
 
 
