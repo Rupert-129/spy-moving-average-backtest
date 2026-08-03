@@ -108,7 +108,7 @@ The strategy's CAGR was 9.14% compared to the market's 15.21%. This means that t
 However, the strategy showed less volatility than the market at 13.58% as opposed to 20.25%. The strategy experienced a shallower maximum drawdown. The strategy 
 recorded a maximum drawdown of -21.99% compared to -33.72% shown by the market. the market showed a higher Sharpe ratio of 0.80 
 versus the strategy with a Sharpe ratio of 0.71. Overall this shows that the strategy reduced risk but also substantially reduced returns.
-### EXPLANTION
+### EXPLANATION
 Simple moving averages are lagging indicators, by the time the indicators move and the signal is generated the price has already fallen and lowered the return of the 
 strategy. This is especially true for the periods of high volatility where the signal is generated months after the market has moved. Exit signals occur after prices have 
 already fallen and entry signals occur after prices have already begun to rise This can be seen on the equity curve in the RESULTS section as 
