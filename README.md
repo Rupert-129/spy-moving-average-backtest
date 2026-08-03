@@ -10,7 +10,7 @@ total return, Sharpe ratio, CAGR, volatility and drawdown.
 The strategy uses 20 day and 100 day simple-moving-averages. These periods represent roughly 1 month of trading time and 5 months of trading activity 
 respectively. I selected these timeframes to balance noise reduction and responsiveness. Shorter time frames yielded noisier and variable moving
 averages whereas longer time frames gave a moving average that was slower to respond to moves in the market. The values I have chosen are intended to 
-give smooth and responsive moving averages that give valid results when used. however, these values are not assumed to be optimal. 
+give smooth and responsive moving averages that give valid results when used. However, these values are not assumed to be optimal. 
 
 The strategy I have chosen is a long-only trend-following strategy. If the 20-day average moves above the 100-day average, a signal is produced and the 
 backtester enters a long position. It then stays in the position until the 20-day moving average goes below the 100-day average in which case, it 
@@ -21,8 +21,8 @@ and avoids look-ahead bias.
 
 ## DATA AND ASSUMPTIONS
 ### DATA
-The dataset I decided to use was SPY, This is an ETF tracking the S&P 500 that was retrieved from yahoo finance using the yfinance python package.
-I tested over a period of just over six years worth of daily trading data (beginning 2020-01-01 and ending 2026-07-21), specifically the closing price, 
+The dataset I decided to use was SPY. This is an ETF tracking the S&P 500 that was retrieved from Yahoo finance using the yfinance python package.
+I tested over a period of just over six years' worth of daily trading data (beginning 2020-01-01 and ending 2026-07-21), specifically the closing price, 
 making sure to adjust for dividends and stock splits (by setting auto_adjust = True). To guarantee clean data I created a function that sorts
 entries into chronological order, removes duplicate values and removes missing entries. The benchmark for the backtester was a continuously invested buy-and-hold 
 position in SPY. To generate the first part of the 100 day moving average I have added a warmup period at the beginning of the backtest to ensure the results are 
@@ -41,14 +41,14 @@ start date of 2020-01-01. This is over 100 days and allows us to perform the war
 ordering it, removing duplicates and missing closing prices. Once the data was clean I used those extra seven months to start the moving averages and restricted 
 the testing window such that it started on 2020-01-01 and ended on 2026-07-21. 
 ### POSITIONS AND RETURNS
-To begin with I Calculated the daily percentage returns. The formula for which is: Daily return = (Current closing price / previous closing price) - 1. Next, using 
+To begin with I calculated the daily percentage returns. The formula for which is: Daily return = (Current closing price / previous closing price) - 1. Next, using 
 the aforementioned extra data, I calculated the 20 day and 100 day moving averages and plotted them. For the signal to work we need the crossover condition to be 
-binary, A signal of 1 means we are invested (20 day SMA > 100 day SMA) and a signal of 0 means we are holding cash (100 day SMA > 20 day SMA). To avoid look-ahead 
+binary. A signal of 1 means we are invested (20 day SMA > 100 day SMA) and a signal of 0 means we are holding cash (100 day SMA > 20 day SMA). To avoid look-ahead 
 bias, I shifted the signal forward by 1 day. This means the backtester can only make a trade with information it would realistically already have (not picking up the 
 return on the day the signal was formed). The position determined by the previous day’s signal was applied to the next close-to-close return interval. At the end of 
 this part of the code is the consideration for the transaction costs. As stated in ASSUMPTIONS I have chosen a fixed cost of 5 basis points. We apply this when 
 calculating strategy returns: Strategy return = Position x Market return - 0.0005 X |Trade|. The Trade column is: Trade = Today's position - Previous day position. We 
-must make trade an absolute value so that both entering and exiting the market yields a negative cost to the strategy return.
+must make trade an absolute value so that both entering and exiting the market yield a negative cost to the strategy return.
 ### CONSTRUCTING AND EVALUATING THE BACKTEST
 The backtest begins the position value created in the warm-up stage (in our case 1). The strategy is created by compounding the daily returns when the backtester is 
 invested (position value = 1). We calculate this as: New portfolio value = previous portfolio value x (1 + Daily return) A 5 basis point charge is taken if the 
@@ -58,7 +58,7 @@ we can now calculate and compare performance statistics from the same fixed test
 ### CONSISTENCY CHECK
 Several consistency checks were used to validate the backtest. Positions were restricted to 0 or 1, both portfolios were evaluated over the same dates and the trade
 counts were checked against the initial and final positions. The final output contained eight entries, seven exits, seven completed trades and one open trade.
-this is consistent with the strategy beginning and ending invested.
+This is consistent with the strategy beginning and ending invested.
 
 ## PERFORMANCE METRICS
 - **Total return:** The percentage change in portfolio value over the testing period.
@@ -106,12 +106,12 @@ from the completed-trade statistics.
 ### SUMMARY
 The strategy's CAGR was 9.14% compared to the market's 15.21%. This means that the market outperformed the strategy by 6.07 percentage points. 
 However, the strategy showed less volatility than the market at 13.58% as opposed to 20.25%. The strategy experienced a shallower maximum drawdown. The strategy 
-recorded a maximum drawdown of -21.99% compared to -33.72% shown by the market. the market showed a higher Sharpe ratio of 0.80 
+recorded a maximum drawdown of -21.99% compared to -33.72% shown by the market. The market showed a higher Sharpe ratio of 0.80 
 versus the strategy with a Sharpe ratio of 0.71. Overall this shows that the strategy reduced risk but also substantially reduced returns.
 ### EXPLANATION
 Simple moving averages are lagging indicators, by the time the indicators move and the signal is generated the price has already fallen and lowered the return of the 
 strategy. This is especially true for the periods of high volatility where the signal is generated months after the market has moved. Exit signals occur after prices have 
-already fallen and entry signals occur after prices have already begun to rise This can be seen on the equity curve in the RESULTS section as 
+already fallen and entry signals occur after prices have already begun to rise. This can be seen on the equity curve in the RESULTS section as 
 the flat areas of the blue line (the strategy holding cash) beginning midway through a large drawdown and then carrying on until after the market is restoring itself 
 towards its last high. Another metric that shows this is exposure. The strategy was invested on 78% of days which caused it to miss some bullish market days. Furthermore, 
 transaction costs slightly reduced returns at each entry and exit.
@@ -126,7 +126,7 @@ strategy behaves more as a defensive risk-management rule than a market-beating 
 ### LIMITED SCOPE AND SAMPLE SIZE
 This backtest took place over a relatively short period, six and a half years, and only monitored SPY. This means that 
 we cannot say for certain that these sorts of results will be consistent for longer periods or different tickers. Over 
-the testing period there were only seven completed trades recorded and only 57.14% of them were winning (4/7).The best 
+the testing period there were only seven completed trades recorded and only 57.14% of them were winning (4/7). The best 
 completed trade returned 50.19%, meaning one large trade could have a large influence on the average net trade return of 
 9.69%. The sample is too small to make strong statistical conclusions.
 ### PARAMETER SELECTION
@@ -135,7 +135,7 @@ with my own intuition to try and balance smoothness and responsiveness. These va
 out-of-sample dataset and the data in the dataset influenced the decision to use these values so there is a risk of 
 selection bias. This single test does not prove that other combinations would perform similarly.
 ### TRADING ASSUMPTIONS
-Orders are assumed to execute at the required closing price. The transaction cost was fixed at 5 basis points was taken 
+Orders are assumed to execute at the required closing price. The transaction cost was fixed at 5 basis points and was taken 
 from each entry and exit which may not reflect costs in every market condition. I also excluded slippage, bid-ask spreads 
 and market impact from the test to simplify calculations. This change may allow the strategy to perform better than it 
 would if it was applied to a real market. The benchmark does not pay an initial transaction cost which gives a very small 
@@ -155,7 +155,7 @@ poor performance while invested.
 ## FUTURE IMPROVEMENTS
 ### MORE REALISTIC TRADING MODEL
 In future versions I could include bid-ask spreads, slippage, variable transaction costs and interest for uninvested cash.
-Trades could also be modelled to execute at the next trading sessions opening price, while the final open position could be
+Trades could also be modelled to execute at the next trading session's opening price, while the final open position could be
 closed and charged an exit cost. We could also charge the benchmark a transaction cost at the beginning to simulate an 
 entry and we could supplement it with exposure or volatility matched comparisons. These changes would help distinguish 
 the effects of the market timing decisions from those of taking less market risk.
