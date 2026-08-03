@@ -21,7 +21,7 @@ and avoids look-ahead bias.
 
 ## DATA AND ASSUMPTIONS
 ### DATA
-The dataset I decided to use was SPY. This is an ETF tracking the S&P 500 that was retrieved from Yahoo finance using the yfinance python package.
+The dataset I decided to use was SPY. This is an ETF tracking the S&P 500 that was retrieved from Yahoo Finance using the yfinance Python package.
 I tested over a period of just over six years' worth of daily trading data (beginning 2020-01-01 and ending 2026-07-21), specifically the closing price, 
 making sure to adjust for dividends and stock splits (by setting auto_adjust = True). To guarantee clean data I created a function that sorts
 entries into chronological order, removes duplicate values and removes missing entries. The benchmark for the backtester was a continuously invested buy-and-hold 
@@ -50,7 +50,7 @@ this part of the code is the consideration for the transaction costs. As stated 
 calculating strategy returns: Strategy return = Position x Market return - 0.0005 X |Trade|. The Trade column is: Trade = Today's position - Previous day position. We 
 must make trade an absolute value so that both entering and exiting the market yield a negative cost to the strategy return.
 ### CONSTRUCTING AND EVALUATING THE BACKTEST
-The backtest begins the position value created in the warm-up stage (in our case 1). The strategy is created by compounding the daily returns when the backtester is 
+The backtest begins with the position value created in the warm-up stage (in our case 1). The strategy is created by compounding the daily returns when the backtester is 
 invested (position value = 1). We calculate this as: New portfolio value = previous portfolio value x (1 + Daily return) A 5 basis point charge is taken if the 
 backtester begins invested (if first tested position = 1). Then the strategy is plotted against the equity curve of the market which we use as our benchmark. Finally 
 we select the final closing value as this is our final strategy value, this is done without forcing an exit. Using the values for strategy growth and market growth 
