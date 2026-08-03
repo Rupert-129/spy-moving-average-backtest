@@ -2,7 +2,7 @@
 A Python backtest of a 20/100-day moving-average crossover strategy on SPY, including transaction costs and benchmark performance analysis.
 
 ## OVERVIEW
-I have built a backtester to see if I could in some way beat simply just buying holding an asset for years. The Ticker I used as my test subject 
+I have built a backtester to see if I could in some way beat simply just buying and holding an asset for years. The Ticker I used as my test subject 
 is SPY (a tracker of the S&P500), and to produce my signals I compared 20 and 100 day moving averages. The metrics I primarily compared were,
 total return, Sharpe ratio, CAGR, volatility and drawdown. 
 
@@ -47,7 +47,7 @@ binary, A signal of 1 means we are invested (20 day SMA > 100 day SMA) and a sig
 bias, I shifted the signal forward by 1 day. This means the backtester can only make a trade with information it would realistically already have (not picking up the 
 return on the day the signal was formed). The position determined by the previous day’s signal was applied to the next close-to-close return interval. At the end of 
 this part of the code is the consideration for the transaction costs. As stated in ASSUMPTIONS I have chosen a fixed cost of 5 basis points. We apply this when 
-calculating strategy returns: Strategy return = Position x Market return - 0.0005 X |Trade|. The Trade column is: Trade = Todays position - Previous day position. We 
+calculating strategy returns: Strategy return = Position x Market return - 0.0005 X |Trade|. The Trade column is: Trade = Today's position - Previous day position. We 
 must make trade an absolute value so that both entering and exiting the market yields a negative cost to the strategy return.
 ### CONSTRUCTING AND EVALUATING THE BACKTEST
 The backtest begins the position value created in the warm-up stage (in our case 1). The strategy is created by compounding the daily returns when the backtester is 
@@ -126,9 +126,9 @@ strategy behaves more as a defensive risk-management rule than a market-beating 
 ### LIMITED SCOPE AND SAMPLE SIZE
 This backtest took place over a relatively short period, six and a half years, and only monitored SPY. This means that 
 we cannot say for certain that these sorts of results will be consistent for longer periods or different tickers. Over 
-the testing period there was only seven completed trades recorded and only 57.14% of them were winning (4/7).The best 
+the testing period there were only seven completed trades recorded and only 57.14% of them were winning (4/7).The best 
 completed trade returned 50.19%, meaning one large trade could have a large influence on the average net trade return of 
-9,69%. The sample is too small to make strong statistical conclusions.
+9.69%. The sample is too small to make strong statistical conclusions.
 ### PARAMETER SELECTION
 For this project, the only combination we tested was 20-day versus 100-day simple moving averages. These values I picked
 with my own intuition to try and balance smoothness and responsiveness. These values were not validated using a separate
@@ -158,10 +158,10 @@ In future versions I could include bid-ask spreads, slippage, variable transacti
 Trades could also be modelled to execute at the next trading sessions opening price, while the final open position could be
 closed and charged an exit cost. We could also charge the benchmark a transaction cost at the beginning to simulate an 
 entry and we could supplement it with exposure or volatility matched comparisons. These changes would help distinguish 
-the affects of the market timing decisions from those of taking less market risk.
+the effects of the market timing decisions from those of taking less market risk.
 ### BROADER TESTING
 We could use a longer period and use other assets. Such assets could include equity ETFs, indices or asset classes. This 
-would give us more competed trades and expose the strategy to a wider range of market conditions, and would allow us to
+would give us more completed trades and expose the strategy to a wider range of market conditions, and would allow us to
 make more statistically reliable conclusions on the strategy and see whether the result we got is specific to SPY.
 ### PARAMETER SENSITIVITY
 A wider range of moving-average combinations could be tested, such as short averages between 10 and 50 days and longer 
